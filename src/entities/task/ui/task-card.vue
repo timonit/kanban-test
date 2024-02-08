@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import { MiniButton } from '@/shared/ui/components'
 </script>
 
 <template>
   <div class="task-card">
     <slot></slot>
-    <div>
-      edit
-    </div>
-  </div>
+    <MiniButton>A</MiniButton>
+</div>
 </template>
 
 <style>
