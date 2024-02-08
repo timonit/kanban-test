@@ -1,38 +1,28 @@
 <script setup lang="ts">
-import { TaskCard, useTaskStore } from '@/entities/task';
-import { Collumn } from '@/widgets/collumn';
+import { useTaskStore } from '@/entities/task';
+import { Board } from '@/pages';
 
 const store = useTaskStore();
 
 window.store = store;
 
 store.addTask('asd', 'new');
+store.addTask('in progress', 'in progress');
+store.addTask('done', 'done');
+store.addTask('fix', 'want fix');
 </script>
 
 <template>
   <main class="content">
-    <div class="c">
-      <Collumn collumn="in progress" title="На согласование" />
-      <Collumn collumn="new" title="Новые" />
-      <Collumn collumn="new" title="В процессе" />
-      <Collumn collumn="new" title="Готово" />
-      <Collumn collumn="new" title="Доработать" />
-    </div>
+    <Board />
   </main>
 </template>
 
 <style scoped>
-.c {
-  display: flex;
-  gap: 8px;
-  justify-content: stretch;
-  width: 100%;
-  height: 100%;
-}
-
 .content {
   width: 920px;
-  height: 100%;
-  padding: 50px 0;
+  padding-top: 48px;
+  padding-bottom: 24px;
+  overflow: hidden;
 }
 </style>

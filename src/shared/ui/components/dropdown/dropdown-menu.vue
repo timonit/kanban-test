@@ -16,13 +16,14 @@ const dynamicStyle = computed(() => {
   
   const position: { top?: string; bottom?: string; right?: string; left?: string; } = {};
   
-  if (triggerEl.value.offsetLeft > (window.innerWidth - menuEl.value.clientWidth - 5)) {
-    position.left = `${triggerEl.value.offsetLeft + triggerEl.value.clientWidth - menuEl.value.clientWidth}px`;
-  } else position.left = `${triggerEl.value.offsetLeft}px`;
-
-  if (triggerEl.value.offsetTop > (window.innerHeight - menuEl.value.clientHeight - 5)) {
-    position.bottom = `${window.innerHeight - triggerEl.value.offsetTop}px`;
-  } else position.top = `${triggerEl.value.offsetTop + triggerEl.value.clientHeight}px`;
+  const rect = triggerEl.value.getBoundingClientRect();
+  if (menuEl.value.clientHeight > (window.innerWidth - rect.right - 5)) {
+    position.right = `${window.innerWidth - rect.right}px`;
+  } else position.left = `${rect.left}px`;
+  
+  if (menuEl.value.clientHeight > (window.innerHeight - rect.bottom - 5)) {
+    position.bottom = `${window.innerHeight - rect.top}px`;
+  } else position.top = `${rect.bottom}px`;
 
   return position;
 });
@@ -39,7 +40,8 @@ const dynamicStyle = computed(() => {
 
 <style>
 .dropdown-menu {
-  position: absolute;
+  z-index: 500;
+  position: fixed;
   display: flex;
   flex-direction: column;
   background: var(--color-white);
