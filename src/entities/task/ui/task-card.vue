@@ -29,6 +29,7 @@ const itemList = ref<DropdownItemDTO[]>([
 .task-card {
   padding: 8px 24px 8px 8px;
   background: var(--color-white);
+  cursor: pointer;
   border-radius: 4px;
   display: flex;
   justify-content: space-between;
