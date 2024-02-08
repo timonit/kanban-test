@@ -8,7 +8,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="dropdown-item">
+  <div class="dropdown-item" @click="item.handler(item, $event)">
     <MiniButton v-if="props.item.icon">{{ props.item.icon }}</MiniButton>
     {{ props.item.text }}
   </div>
@@ -21,6 +21,7 @@ const props = defineProps<{
   display: flex;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
 }
 
 .dropdown-item:hover {
