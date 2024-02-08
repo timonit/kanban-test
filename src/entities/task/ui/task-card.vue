@@ -1,11 +1,27 @@
 <script setup lang="ts">
 import { MiniButton } from '@/shared/ui/components'
+import { Dropdown } from '@/shared/ui';
+import { ref } from 'vue';
+import type { DropdownItemDTO } from '@/shared/ui/components/dropdown';
+
+const itemList = ref<DropdownItemDTO[]>([
+  {
+    handler(id: string) {
+        console.log('aaa', id);
+    },
+    id: 'sad',
+    icon: 'd',
+    text: 'ttt a a a a'
+  }
+])
 </script>
 
 <template>
   <div class="task-card">
     <slot></slot>
-    <MiniButton>A</MiniButton>
+    <Dropdown :list="itemList" >
+      <MiniButton >A</MiniButton>
+    </Dropdown>
 </div>
 </template>
 
