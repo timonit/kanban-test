@@ -3,6 +3,11 @@ import { MiniButton } from '@/shared/ui/components'
 import { Dropdown } from '@/shared/ui';
 import { ref } from 'vue';
 import type { DropdownItemDTO } from '@/shared/ui/components/dropdown';
+import type { TaskDTO } from '..';
+
+const props = defineProps<{
+  task: TaskDTO
+}>();
 
 const itemList = ref<DropdownItemDTO[]>([
   {
@@ -10,24 +15,16 @@ const itemList = ref<DropdownItemDTO[]>([
       console.log('aaa', item);
     },
     id: 'sad',
-    icon: 'd',
-    text: 'ttt a a a a'
+    icon: 'Р',
+    text: 'Редактировать'
   },
   {
     handler(item: DropdownItemDTO) {
       console.log('aaa', item);
     },
     id: 'sd',
-    icon: 'd',
-    text: 'ttt aasd a a a'
-  },
-  {
-    handler(item: DropdownItemDTO) {
-      console.log('aaa', item);
-    },
-    id: 'ad',
-    icon: 'd',
-    text: 'ttt  sajkdh ka a a a'
+    icon: 'У',
+    text: 'Удалить'
   },
 ])
 </script>
@@ -35,7 +32,7 @@ const itemList = ref<DropdownItemDTO[]>([
 <template>
   <div class="task-card">
     <div class="task-card__text">
-      <slot></slot>
+      {{ props.task.text }}
     </div>
     <Dropdown :list="itemList" >
       <MiniButton class="dropdown-trigger">A</MiniButton>
