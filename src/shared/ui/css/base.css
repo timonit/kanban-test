@@ -1,3 +1,53 @@
+@font-face {
+  font-family: 'TT Interphases Pro Variable';
+  src: url('./TT_Interphases_Pro_Trial_Variable.ttf');
+}
+
+:root {
+  --font-weight-medium: 584;
+  --font-weight-regular: 400;
+
+  --color-pink: #FF65DD;
+  --color-blue: #3D86F4;
+  --color-blue-light: #33A0FF;
+  --color-yellow: #FFC633;
+  --color-green: #22C33D;
+  --color-red: #F53D5C;
+  --color-white: #ffffff;
+  --color-white-dark: #F7F7F7;
+  --color-black: #1C2530;
+  --color-gray: #86949E;
+  --color-gray-light: #E3E5E8;
+}
+
+:root {
+  --color-danger: var(--color-red);
+  --color-success: var(--color-green);
+  --color-success: var(--color-green);
+
+  --color-text: var(--color-black);
+  --color-border: #C4CAD4;
+  --color-placeholder: var(--color-gray);
+  --border-radius: 8px;
+  
+  --opacity-backdrop-modal: 60%;
+}
+
 body {
   background-color: black;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'TT Interphases Pro Variable';
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
