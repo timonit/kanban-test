@@ -7,6 +7,9 @@ const store = useTaskStore();
 window.store = store;
 
 store.addTask('asd', 'new');
+store.addTask('in progress', 'in progress');
+store.addTask('done', 'done');
+store.addTask('fix', 'want fix');
 </script>
 
 <template>
