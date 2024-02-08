@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia';
 const props = defineProps<{
   collumn: CollumnName;
   title: string;
+  color: string;
 }>()
 
 const taskStore = useTaskStore();
@@ -15,7 +16,7 @@ const { getTasksByCollumnName } = storeToRefs(taskStore);
 
 <template>
   <div class="collumn">
-    <CollumnHead :title="props.title" color="red" />
+    <CollumnHead :title="props.title" :color="props.color" />
     <TaskList :list="getTasksByCollumnName(props.collumn)" />
   </div>
 </template>
@@ -27,6 +28,7 @@ const { getTasksByCollumnName } = storeToRefs(taskStore);
   width: 100%;
   height: 100%;
   border-radius: 8px;
+  border: solid 1px var(--color-gray-light);
   overflow: hidden;
 }
 </style>
