@@ -11,12 +11,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <header>
-  </header>
-
-  <main>
+  <main class="content">
+    В процессе
   </main>
 </template>
 
 <style scoped>
+.content {
+  width: 920px;
+  height: 100%;
+  padding: 50px 0;
+  background-color: rgb(50, 50, 50);
+}
 </style>
