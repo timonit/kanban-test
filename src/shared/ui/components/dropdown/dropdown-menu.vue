@@ -13,25 +13,23 @@ const isShow = ref(false);
 
 const dynamicStyle = computed(() => {
   if (!triggerEl.value || !menuEl.value) return;
-
+  
   const position: { top?: string; bottom?: string; right?: string; left?: string; } = {};
-
+  
   if (triggerEl.value.offsetLeft > (window.innerWidth - menuEl.value.clientWidth - 5)) {
-    position.right = `${window.innerWidth - (triggerEl.value.offsetLeft + triggerEl.value.clientWidth)}px`;
-  }
-  else position.left = `${triggerEl.value.offsetLeft}px`;
+    position.left = `${triggerEl.value.offsetLeft + triggerEl.value.clientWidth - menuEl.value.clientWidth}px`;
+  } else position.left = `${triggerEl.value.offsetLeft}px`;
 
   if (triggerEl.value.offsetTop > (window.innerHeight - menuEl.value.clientHeight - 5)) {
     position.bottom = `${window.innerHeight - triggerEl.value.offsetTop}px`;
-  }
-  else position.top = `${triggerEl.value.offsetTop + triggerEl.value.clientHeight}px`;
+  } else position.top = `${triggerEl.value.offsetTop + triggerEl.value.clientHeight}px`;
 
   return position;
 });
 </script>
 
 <template>
-  <span ref="triggerEl" @click="isShow = !isShow">
+  <span style="height: fit-content; width: fit-content;" ref="triggerEl" @click="isShow = !isShow">
     <slot></slot>
   </span>
   <div class="dropdown-menu" ref="menuEl" v-if="isShow" :style="[dynamicStyle]">

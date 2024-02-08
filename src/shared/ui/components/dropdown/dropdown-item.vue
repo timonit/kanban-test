@@ -22,6 +22,7 @@ const props = defineProps<{
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  text-wrap: nowrap;
 }
 
 .dropdown-item:hover {

@@ -6,28 +6,46 @@ import type { DropdownItemDTO } from '@/shared/ui/components/dropdown';
 
 const itemList = ref<DropdownItemDTO[]>([
   {
-    handler(id: string) {
-        console.log('aaa', id);
+    handler(item: DropdownItemDTO) {
+      console.log('aaa', item);
     },
     id: 'sad',
     icon: 'd',
     text: 'ttt a a a a'
-  }
+  },
+  {
+    handler(item: DropdownItemDTO) {
+      console.log('aaa', item);
+    },
+    id: 'sd',
+    icon: 'd',
+    text: 'ttt aasd a a a'
+  },
+  {
+    handler(item: DropdownItemDTO) {
+      console.log('aaa', item);
+    },
+    id: 'ad',
+    icon: 'd',
+    text: 'ttt  sajkdh ka a a a'
+  },
 ])
 </script>
 
 <template>
   <div class="task-card">
-    <slot></slot>
+    <div class="task-card__text">
+      <slot></slot>
+    </div>
     <Dropdown :list="itemList" >
-      <MiniButton >A</MiniButton>
+      <MiniButton class="dropdown-trigger">A</MiniButton>
     </Dropdown>
 </div>
 </template>
 
 <style>
 .task-card {
-  padding: 8px 24px 8px 8px;
+  position: relative;
   background: var(--color-white);
   cursor: pointer;
   border-radius: 4px;
@@ -35,5 +53,13 @@ const itemList = ref<DropdownItemDTO[]>([
   justify-content: space-between;
   flex-wrap: nowrap;
   border: solid 1px var(--color-gray-light);
+}
+
+.task-card__text {
+  padding: 8px 0 8px 8px;
+}
+
+.dropdown-trigger {
+  margin: 4px;
 }
 </style>
