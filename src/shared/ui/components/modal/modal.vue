@@ -16,6 +16,7 @@ const show = defineModel('show');
         </div>
       </div>
     </div>
+    <div v-if="show" class="backdrop"></div>
   </Teleport>
 </template>
 
@@ -30,19 +31,32 @@ const show = defineModel('show');
   z-index: 5000;
 }
 
+.backdrop {
+  z-index: 4000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: .6;
+}
+
 .modal__body {
   display: flex;
   width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
-  background: black;
-  opacity: .6;
+  /* background: black;
+  opacity: .6; */
 }
 
 .modal__main {
   position: relative;
   background: white;
+  width: 500px;
+  box-sizing: border-box;
   padding: 24px 40px 40px 40px;
   border-radius: var(--border-radius-md);
   display: flex;

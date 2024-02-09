@@ -7,7 +7,7 @@ type TaskState = {
   taskList: TaskDTO[]
 }
 
-export const useTaskStore = defineStore<'counter', TaskState>('counter', {
+export const useTaskStore = defineStore<'task', TaskState>('task', {
   state: () => {
     return { taskList: [] }
   },
@@ -42,7 +42,7 @@ export const useTaskStore = defineStore<'counter', TaskState>('counter', {
     },
 
     removeTaskByID(id: string) {
-      this.taskList.filter((item) => item.id !== id);
+      this.taskList = this.taskList.filter((item) => item.id !== id);
     }
   }
 })
