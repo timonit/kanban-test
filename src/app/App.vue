@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/entities/task';
+import { useNotification } from '@/features/notification';
 import { Board } from '@/pages';
-import { Icon } from '@/shared/ui/components/icon';
+
+const n = useNotification();
+window.n = n;
 
 const store = useTaskStore();
 
