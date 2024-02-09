@@ -5,7 +5,6 @@ type IconType = 'Cross' | 'Delete' | 'Dots' | 'Edit' | 'Ok' | 'Plus';
 
 const props = defineProps<{
   icon: IconType,
-  color: string;
 }>();
 </script>
 
@@ -14,7 +13,4 @@ const props = defineProps<{
 </template>
 
 <style>
-.icon {
-  stroke: v-bind('props.color');
-}
 </style>
