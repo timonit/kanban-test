@@ -3,35 +3,52 @@ import type { TaskDTO } from '@/entities';
 import { Dropdown, DropdownItem, MiniButton, Icon } from '@/shared';
 import { TaskCard } from '@/entities';
 import { EditTaskForm } from '@/features/task/edit';
-import { RemoveDropdownItem } from '@/features/task/remove';
 import { ref } from 'vue';
+import RemoveConfirmation from '@/features/task/remove/ui/remove-confirmation.vue';
 
 defineProps<{
   task: TaskDTO;
 }>();
 
 const isShowForm = ref(false);
+const dropdownIsShow = ref(false);
+const removeConfirmationIsShow = ref(false);
 </script>
 
 <template>
-  <EditTaskForm v-if="isShowForm" :task="task" @edited="isShowForm = false" @cancel="isShowForm = false" />
+  <RemoveConfirmation
+    v-model:show="removeConfirmationIsShow"
+    :task="task"
+  />
+
+  <EditTaskForm
+    v-if="isShowForm"
+    :task="task"
+    @edited="isShowForm = false"
+    @cancel="isShowForm = false"
+  />
 
   <TaskCard v-else :task="task">
     <template v-slot:end>
-      <Dropdown>
+      <Dropdown v-model:show="dropdownIsShow">
         <MiniButton class="dropdown-trigger">
           <Icon class="icon" icon="Dots" />
         </MiniButton>
-        
+
         <template v-slot:items>
-          <DropdownItem ref="el" class="edit-task-dropdown-item" @click="isShowForm = true">
+          <DropdownItem @click="isShowForm = true, dropdownIsShow = false">
             <MiniButton>
               <Icon icon="Edit" />
             </MiniButton>
             Редактировать
           </DropdownItem>
 
-          <RemoveDropdownItem :task="task" />
+          <DropdownItem @click="removeConfirmationIsShow = true, dropdownIsShow = false">
+            <MiniButton>
+              <Icon icon="Delete" />
+            </MiniButton>
+            Удалить
+          </DropdownItem>
         </template>
       </Dropdown>
     </template>

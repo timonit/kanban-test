@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import type { DropdownItemDTO } from './types';
-import DropdownItem from './dropdown-item.vue';
 import { computed, ref } from 'vue';
-
-// const props = defineProps<{
-//   list: DropdownItemDTO[],
-// }>();
 
 const triggerEl = ref<HTMLElement>();
 const menuEl = ref<HTMLElement>();
-const isShow = ref(false);
+const isShow = defineModel('show');
 
 const dynamicStyle = computed(() => {
   if (!triggerEl.value || !menuEl.value) return;
@@ -35,7 +29,6 @@ const dynamicStyle = computed(() => {
   </span>
   <div class="dropdown-menu" ref="menuEl" v-if="isShow" :style="[dynamicStyle]">
     <slot name="items"></slot>
-    <!-- <DropdownItem v-for="item of props.list" :key="item.id" :item="item" /> -->
   </div>
 </template>
 
