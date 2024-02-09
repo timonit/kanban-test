@@ -9,10 +9,28 @@ defineProps<{
 }>();
 
 const isShowForm = ref(false);
+// const formEl = ref<HTMLFormElement>();
+
+const showForm = () => {
+  isShowForm.value = true;
+  // setTimeout(() => {
+  //   console.log(formEl.value)
+  //   if (formEl.value) formEl.value?.$el.focus();
+  // }, 1000)
+}
+
+const hideForm = () => {
+  isShowForm.value = false;
+}
+
+const toggle = () => {
+  if (isShowForm.value) hideForm();
+  else showForm();
+}
 </script>
 
 <template>
-  <div class="add-task" v-show="!isShowForm" @click="isShowForm = !isShowForm">
+  <div class="add-task" v-show="!isShowForm" @click="toggle">
     <div class="add-task__icon">
       <Icon class="" icon="Plus" />
     </div>
@@ -21,10 +39,10 @@ const isShowForm = ref(false);
     </span>
   </div>
   <AddTaskForm
-    v-show="isShowForm"
+    v-if="isShowForm"
     :collumn="collumn"
-    @created="isShowForm = false"
-    @cancel="isShowForm = false" />
+    @created="hideForm"
+    @cancel="hideForm" />
 </template>
 
 <style>

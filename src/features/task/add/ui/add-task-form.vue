@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore, type CollumnName } from '@/entities';
 import { Icon, MiniButton } from '@/shared';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
   collumn: CollumnName;
@@ -10,6 +10,7 @@ const emit = defineEmits<{ (e: 'created'): void; (e: 'cancel'): void; }>();
 
 const taskStore = useTaskStore();
 const text = ref<string>('');
+const textEl = ref<HTMLFormElement>();
 
 const create = () => {
   if (text.value.trim()) {
@@ -24,11 +25,23 @@ const cancel = () => {
   emit('cancel');
   text.value = '';
 }
+
+const input = (event: Event) => {
+  const target = event.target as HTMLTextAreaElement;
+
+  if (target.scrollHeight > target.clientHeight) {
+    target.rows = target.rows + 1;
+  }
+}
+
+onMounted(() => {
+  textEl.value?.focus();
+})
 </script>
 
 <template>
   <form class="add-task-form" @submit.prevent="create">
-    <textarea class="add-task-form__text" placeholder="Введите текст..." name="text" v-model="text">
+    <textarea ref="textEl" class="add-task-form__text" @input="input" placeholder="Введите текст..." name="text" v-model="text">
     </textarea>
 
     <div>
@@ -56,11 +69,18 @@ const cancel = () => {
 
 .add-task-form__text {
   width: 100%;
+  min-height: 36px;
+  resize: none;
   border: none;
 }
 
 .add-task-form__text::placeholder {
   color: var(--color-placeholder);
+}
+
+.add-task-form__text:focus {
+  border: none;
+  outline: none;
 }
 
 .success>* {
