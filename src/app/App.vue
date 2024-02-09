@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore } from '@/entities/task';
 import { Board } from '@/pages';
+import { Icon } from '@/shared/ui/components/icon';
 
 const store = useTaskStore();
 

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { MiniButton } from '@/shared/ui/components'
 import { Dropdown } from '@/shared/ui';
-import { ref } from 'vue';
+import { h, ref } from 'vue';
 import type { DropdownItemDTO } from '@/shared/ui/components/dropdown';
 import type { TaskDTO } from '..';
+import { Icon } from '@/shared/ui';
 
 const props = defineProps<{
   task: TaskDTO
@@ -15,7 +16,7 @@ const itemList = ref<DropdownItemDTO[]>([
       console.log('aaa', item);
     },
     id: 'sad',
-    icon: 'Р',
+    icon: h(Icon, {icon: 'Edit'}),
     text: 'Редактировать'
   },
   {
@@ -23,7 +24,7 @@ const itemList = ref<DropdownItemDTO[]>([
       console.log('aaa', item);
     },
     id: 'sd',
-    icon: 'У',
+    icon: h(Icon, {icon: 'Delete'}),
     text: 'Удалить'
   },
 ])
@@ -35,7 +36,9 @@ const itemList = ref<DropdownItemDTO[]>([
       {{ props.task.text }}
     </div>
     <Dropdown :list="itemList" >
-      <MiniButton class="dropdown-trigger">A</MiniButton>
+      <MiniButton class="dropdown-trigger">
+        <Icon class="icon" icon="Dots" />
+      </MiniButton>
     </Dropdown>
 </div>
 </template>
@@ -58,5 +61,9 @@ const itemList = ref<DropdownItemDTO[]>([
 
 .dropdown-trigger {
   margin: 4px;
+}
+
+.dropdown-trigger:hover .icon {
+  stroke: var(--color-blue);
 }
 </style>
