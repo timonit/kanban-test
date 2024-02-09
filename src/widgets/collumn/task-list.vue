@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { TaskCard, useTaskStore, type CollumnName, type TaskDTO } from '@/entities';
-import { AddTask, RemoveDropdownItem } from '@/features/task';
-import { DropdownItem, Dropdown, Icon, MiniButton } from '@/shared';
+import { useTaskStore, type CollumnName } from '@/entities';
+import { AddTask, } from '@/features/task';
 import { storeToRefs } from 'pinia';
+import TaskListItem from './task-list.item.vue';
 
 const props = defineProps<{
   collumn: CollumnName;
@@ -14,27 +14,11 @@ const { getTasksByCollumnName } = storeToRefs(taskStore);
 
 <template>
   <div class="task-list">
-    <TaskCard v-for="task of getTasksByCollumnName(props.collumn)" :key="task.id" :task="task" >
-      <template v-slot:end>
-        <Dropdown>
-          <MiniButton class="dropdown-trigger">
-            <Icon class="icon" icon="Dots" />
-          </MiniButton>
-          <template v-slot:items>
-          
-            <DropdownItem>
-              <MiniButton>
-                <Icon icon="Edit" />
-              </MiniButton>
-              Редактировать
-            </DropdownItem>
-
-            <RemoveDropdownItem :task="task" />
-          
-          </template>
-        </Dropdown>
-      </template>
-    </TaskCard>
+    <TaskListItem
+      v-for="task of getTasksByCollumnName(props.collumn)"
+      :key="task.id"
+      :task="task">
+    </TaskListItem>
 
     <AddTask :collumn="collumn" />
   </div>

@@ -5,6 +5,8 @@ import { Board } from '@/pages';
 
 const store = useTaskStore();
 window.store = store;
+
+store.addTask('asd', 'new');
 </script>
 
 <template>

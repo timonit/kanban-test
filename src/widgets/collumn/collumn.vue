@@ -13,7 +13,7 @@ const props = defineProps<{
 <template>
   <div class="collumn">
     <CollumnHead :title="props.title" :color="props.color" />
-    <TaskList :collumn="collumn"  />
+    <TaskList :collumn="collumn" />
   </div>
 </template>
 
