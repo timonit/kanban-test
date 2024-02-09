@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { TaskCard, type TaskDTO } from '@/entities';
+import { TaskCard, useTaskStore, type CollumnName, type TaskDTO } from '@/entities';
+import { AddTask } from '@/features/task';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps<{
-  list: TaskDTO[];
+  collumn: CollumnName;
 }>();
+
+const taskStore = useTaskStore();
+const { getTasksByCollumnName } = storeToRefs(taskStore);
 </script>
 
 <template>
   <div class="task-list">
-    <TaskCard v-for="task of props.list" :key="task.id" :task="task" />
+    <TaskCard v-for="task of getTasksByCollumnName(props.collumn)" :key="task.id" :task="task" />
+    <AddTask :collumn="collumn" />
   </div>
 </template>
 
