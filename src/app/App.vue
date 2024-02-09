@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import { useTaskStore } from '@/entities/task';
+import { useNotification } from '@/features/notification';
+import { NotifyPortal } from '@/features/notification/ui';
 import { Board } from '@/pages';
-import { Icon } from '@/shared/ui/components/icon';
 
-const store = useTaskStore();
-
-window.store = store;
-
-store.addTask('asd', 'new');
-store.addTask('in progress', 'in progress');
-store.addTask('done', 'done');
-store.addTask('fix', 'want fix');
+const n = useNotification();
+window.n = n;
 </script>
 
 <template>
   <main class="content">
     <Board />
+    <NotifyPortal />
   </main>
 </template>
 
@@ -25,5 +20,6 @@ store.addTask('fix', 'want fix');
   padding-top: 48px;
   padding-bottom: 24px;
   overflow: hidden;
+  position: relative;
 }
 </style>
