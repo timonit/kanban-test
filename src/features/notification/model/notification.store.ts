@@ -18,7 +18,7 @@ export const useNotification = defineStore<'notification', NotificationState>('n
     notify(dto: Omit<NotificationDTO, 'id'>) {
       const notification = createNotification(dto);
       this.notifications.push(notification);
-      setTimeout(this.removeNotification.bind(this, notification.id), 3000);
+      setTimeout(this.removeNotification.bind(this, notification.id), 60000);
     },
   }
 })

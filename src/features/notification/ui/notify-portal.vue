@@ -1,26 +1,27 @@
 <script setup lang="ts">
-import type { NotificationDTO } from '..';
+import { useNotification } from '..';
 import NotificationCard from './notification-card.vue';
 
-const n: NotificationDTO = {
-  id: 'asd',
-  text: 'laram tararam now not ypu a',
-  title: 'Title',
-  type: 'error'
-}
+const service = useNotification();
 </script>
 
 <template>
   <div class="notify-portal">
-    <NotificationCard :notification="n" />
+    <NotificationCard
+      v-for="item of service.notifications"
+      :key="item.id"
+      :notification="item"
+    />
   </div>
 </template>
 
 <style>
 .notify-portal {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: 24px;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 </style>
