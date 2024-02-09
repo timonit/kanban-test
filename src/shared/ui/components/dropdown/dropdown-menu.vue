@@ -3,9 +3,9 @@ import type { DropdownItemDTO } from './types';
 import DropdownItem from './dropdown-item.vue';
 import { computed, ref } from 'vue';
 
-const props = defineProps<{
-  list: DropdownItemDTO[],
-}>();
+// const props = defineProps<{
+//   list: DropdownItemDTO[],
+// }>();
 
 const triggerEl = ref<HTMLElement>();
 const menuEl = ref<HTMLElement>();
@@ -34,7 +34,8 @@ const dynamicStyle = computed(() => {
     <slot></slot>
   </span>
   <div class="dropdown-menu" ref="menuEl" v-if="isShow" :style="[dynamicStyle]">
-    <DropdownItem v-for="item of props.list" :key="item.id" :item="item" />
+    <slot name="items"></slot>
+    <!-- <DropdownItem v-for="item of props.list" :key="item.id" :item="item" /> -->
   </div>
 </template>
 

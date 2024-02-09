@@ -3,19 +3,20 @@ import { MiniButton } from '@/shared/ui';
 import type { DropdownItemDTO } from './types';
 import { isVNode } from 'vue';
 
-const props = defineProps<{
-  item: DropdownItemDTO,
-}>();
+// const props = defineProps<{
+//   item: DropdownItemDTO,
+// }>();
 
-console.log(isVNode(props.item))
+// console.log(isVNode(props.item))
 </script>
 
 <template>
-  <div class="dropdown-item" @click="item.handler(item, $event)">
-    <MiniButton v-if="props.item.icon">
+  <div class="dropdown-item">
+    <slot></slot>
+    <!-- <MiniButton v-if="props.item.icon">
       <props.item.icon />
     </MiniButton>
-    {{ props.item.text }}
+    {{ props.item.text }} -->
   </div>
 </template>
 

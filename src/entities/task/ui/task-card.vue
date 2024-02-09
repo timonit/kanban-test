@@ -35,11 +35,13 @@ const itemList = ref<DropdownItemDTO[]>([
     <div class="task-card__text">
       {{ props.task.text }}
     </div>
-    <Dropdown :list="itemList" >
+    <slot></slot>
+    <slot name="end"></slot>
+    <!-- <Dropdown :list="itemList" >
       <MiniButton class="dropdown-trigger">
         <Icon class="icon" icon="Dots" />
       </MiniButton>
-    </Dropdown>
+    </Dropdown> -->
 </div>
 </template>
 

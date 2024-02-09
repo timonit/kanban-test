@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useNotification } from '@/features/notification';
+import { useTaskStore } from '@/entities';
 import { NotifyPortal } from '@/features/notification/ui';
 import { Board } from '@/pages';
 
-const n = useNotification();
-window.n = n;
+const store = useTaskStore();
+window.store = store;
 </script>
 
 <template>
