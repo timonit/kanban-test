@@ -79,6 +79,7 @@ onMounted(() => {
   min-height: 36px;
   resize: none;
   border: none;
+  padding: 0;
 }
 
 .add-task-form__text::placeholder {

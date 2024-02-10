@@ -42,5 +42,6 @@ const dynamicStyle = computed(() => {
   border-radius: 4px;
   border: solid 1px var(--color-gray-light);
   padding: 8px 0px;
+  box-shadow: var(--box-shadow-sm);
 }
 </style>

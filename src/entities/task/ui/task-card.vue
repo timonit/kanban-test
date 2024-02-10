@@ -26,6 +26,11 @@ const props = defineProps<{
   justify-content: space-between;
   flex-wrap: nowrap;
   border: solid 1px var(--color-gray-light);
+  transition: box-shadow 200ms;
+}
+
+.task-card:hover {
+  box-shadow: var(--box-shadow-sm);
 }
 
 .task-card__text {

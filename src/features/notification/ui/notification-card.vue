@@ -27,6 +27,7 @@ const props = defineProps<{
   background-color: var(--color-white);
   display: flex;
   align-items: flex-start;
+  box-shadow: var(--box-shadow-sm);
 }
 
 .notification-card.error {

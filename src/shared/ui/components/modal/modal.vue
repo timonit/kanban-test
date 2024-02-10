@@ -48,8 +48,6 @@ const show = defineModel('show');
   height: 100%;
   align-items: center;
   justify-content: center;
-  /* background: black;
-  opacity: .6; */
 }
 
 .modal__main {
@@ -62,6 +60,7 @@ const show = defineModel('show');
   display: flex;
   flex-direction: column;
   gap: 24px;
+  box-shadow: var(--box-shadow-lg);
 }
 
 .close-btn {
