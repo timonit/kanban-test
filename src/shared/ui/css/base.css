@@ -32,6 +32,14 @@
   --border-radius-md: 8px;
   
   --opacity-backdrop-modal: 60%;
+
+  --box-shadow-sm:
+    0px 8px 16px 0px #0000000F,
+    0px 8px 8px 0px #00000014;
+
+  --box-shadow-lg:
+    0px 32px 48px 0px #00000029,
+    0px 16px 32px 0px #0000001A;
 }
 
 body {

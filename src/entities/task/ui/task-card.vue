@@ -28,6 +28,10 @@ const props = defineProps<{
   border: solid 1px var(--color-gray-light);
 }
 
+.task-card:hover {
+  box-shadow: var(--box-shadow-sm);
+}
+
 .task-card__text {
   padding: 8px 0 8px 8px;
 }
