@@ -6,13 +6,13 @@ const service = useNotification();
 </script>
 
 <template>
-  <div class="notify-portal">
-    <NotificationCard
-      v-for="item of service.notifications"
-      :key="item.id"
-      :notification="item"
-    />
-  </div>
+  <TransitionGroup name="notify-portal" tag="div" class="notify-portal">
+      <NotificationCard
+        v-for="item of service.notifications"
+        :key="item.id"
+        :notification="item"
+      />
+  </TransitionGroup>
 </template>
 
 <style>
@@ -24,4 +24,21 @@ const service = useNotification();
   flex-direction: column;
   gap: 24px;
 }
+
+
+.notify-portal-enter-active,
+.notify-portal-leave-active {
+  transition: opacity .5s ease;
+}
+
+.notify-portal-enter-to
+.notify-portal-leave-from {
+  opacity: 1;
+}
+
+.notify-portal-enter-from,
+.notify-portal-leave-to {
+  opacity: 0;
+}
+
 </style>
