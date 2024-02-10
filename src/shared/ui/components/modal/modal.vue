@@ -9,7 +9,7 @@ const show = defineModel('show');
     <div v-if="show" class="modal">
       <div class="modal__body">
         <div class="modal__main">
-          <div class="close-btn" @click="show = !show">
+          <div class="close-btn" @click="show = false">
             <Icon icon="Cross" />
           </div>
           <slot></slot>

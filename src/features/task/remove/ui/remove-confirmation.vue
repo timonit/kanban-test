@@ -1,33 +1,31 @@
 <script setup lang="ts">
 import { useTaskStore, type TaskDTO } from '@/entities';
-import { defineEmits } from 'vue';
+import { Modal } from '@/shared';
 
 const props = defineProps<{
   task: TaskDTO;
 }>();
+const show = defineModel('show');
 
-const emit = defineEmits<{(e: 'removed', id: string): void; (e: 'cancel'): void}>();
 const taskStore = useTaskStore();
 
 const removeHandler = () => {
   taskStore.removeTaskByID(props.task.id);
-  emit('removed', props.task.id);
-}
-
-const cancel = () => {
-  emit('cancel');
+  show.value = false;
 }
 </script>
 
 <template>
-  <div class="remove-confirmation">
-    <span class="remove-confirmation__title">Удалить задачу ?</span>
-    <p class="remove-confirmation__text">{{ task.text }}</p>
-    <div class="remove-confirmation__toolbar">
-      <button class="remove-confirmation__btn" @click="removeHandler">Удалить</button>
-      <button class="remove-confirmation__btn" @click="cancel">Отменить</button>
+  <Modal v-model:show="show">
+    <div class="remove-confirmation">
+      <span class="remove-confirmation__title">Удалить задачу ?</span>
+      <p class="remove-confirmation__text">{{ task.text }}</p>
+      <div class="remove-confirmation__toolbar">
+        <button class="remove-confirmation__btn" @click="removeHandler">Удалить</button>
+        <button class="remove-confirmation__btn" @click="show = false">Отменить</button>
+      </div>
     </div>
-  </div>
+  </Modal>
 </template>
 
 <style>

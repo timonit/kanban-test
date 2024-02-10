@@ -1,5 +1,5 @@
-import RemoveDropdownItem from './remove.dropdown-item.vue';
+import RemoveConfirmation from './remove-confirmation.vue';
 
 export {
-  RemoveDropdownItem
+  RemoveConfirmation
 }

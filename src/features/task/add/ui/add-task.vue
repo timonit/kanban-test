@@ -9,14 +9,9 @@ defineProps<{
 }>();
 
 const isShowForm = ref(false);
-// const formEl = ref<HTMLFormElement>();
 
 const showForm = () => {
   isShowForm.value = true;
-  // setTimeout(() => {
-  //   console.log(formEl.value)
-  //   if (formEl.value) formEl.value?.$el.focus();
-  // }, 1000)
 }
 
 const hideForm = () => {

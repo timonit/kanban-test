@@ -1,33 +1,9 @@
 <script setup lang="ts">
-import { MiniButton } from '@/shared/ui/components'
-import { Dropdown } from '@/shared/ui';
-import { h, ref } from 'vue';
-import type { DropdownItemDTO } from '@/shared/ui/components/dropdown';
 import type { TaskDTO } from '..';
-import { Icon } from '@/shared/ui';
 
 const props = defineProps<{
   task: TaskDTO
 }>();
-
-const itemList = ref<DropdownItemDTO[]>([
-  {
-    handler(item: DropdownItemDTO) {
-      console.log('aaa', item);
-    },
-    id: 'sad',
-    icon: h(Icon, {icon: 'Edit'}),
-    text: 'Редактировать'
-  },
-  {
-    handler(item: DropdownItemDTO) {
-      console.log('aaa', item);
-    },
-    id: 'sd',
-    icon: h(Icon, {icon: 'Delete'}),
-    text: 'Удалить'
-  },
-])
 </script>
 
 <template>
@@ -37,11 +13,6 @@ const itemList = ref<DropdownItemDTO[]>([
     </div>
     <slot></slot>
     <slot name="end"></slot>
-    <!-- <Dropdown :list="itemList" >
-      <MiniButton class="dropdown-trigger">
-        <Icon class="icon" icon="Dots" />
-      </MiniButton>
-    </Dropdown> -->
 </div>
 </template>
 
