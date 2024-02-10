@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore, type TaskDTO } from '@/entities';
-import { Icon, MiniButton } from '@/shared';
+import { useNotification } from '@/features/notification';
+import { COLLUMNS, Icon, MiniButton } from '@/shared';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
@@ -9,12 +10,18 @@ const props = defineProps<{
 const emit = defineEmits<{ (e: 'edited'): void; (e: 'cancel'): void; }>();
 
 const taskStore = useTaskStore();
+const notification = useNotification();
 const text = ref<string>(props.task.text);
 const textEl = ref<HTMLFormElement>();
 
 const edit = () => {
   if (text.value.trim()) {
     taskStore.editTask(props.task.id, {text: text.value});
+    notification.notify({
+      title: `Задача в «${COLLUMNS[props.task.collumn]}» была изменена`,
+      text: text.value,
+      type: 'success'
+    });
     emit('edited');
   } else emit('cancel');
 };

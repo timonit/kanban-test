@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useTaskStore, type TaskDTO } from '@/entities';
+import { useNotification } from '@/features/notification';
 import { Modal } from '@/shared';
 
 const props = defineProps<{
@@ -8,9 +9,15 @@ const props = defineProps<{
 const show = defineModel('show');
 
 const taskStore = useTaskStore();
+const notification = useNotification();
 
 const removeHandler = () => {
   taskStore.removeTaskByID(props.task.id);
+  notification.notify({
+    title: 'Задача удалена',
+    text: props.task.text,
+    type: 'success'
+  });
   show.value = false;
 }
 </script>

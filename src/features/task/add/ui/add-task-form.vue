@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTaskStore, type CollumnName } from '@/entities';
-import { Icon, MiniButton } from '@/shared';
+import { useNotification } from '@/features/notification';
+import { COLLUMNS, Icon, MiniButton } from '@/shared';
 import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
@@ -9,12 +10,18 @@ const props = defineProps<{
 const emit = defineEmits<{ (e: 'created'): void; (e: 'cancel'): void; }>();
 
 const taskStore = useTaskStore();
+const notification = useNotification();
 const text = ref<string>('');
 const textEl = ref<HTMLFormElement>();
 
 const create = () => {
   if (text.value.trim()) {
     taskStore.addTask(text.value, props.collumn);
+    notification.notify({
+      title: `Задача создана в «${COLLUMNS[props.collumn]}»`,
+      text: text.value,
+      type: 'success'
+    });
     emit('created');
   } else emit('cancel');
 

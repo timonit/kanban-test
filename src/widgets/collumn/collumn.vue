@@ -2,17 +2,17 @@
 import { type CollumnName } from '@/entities/task';
 import TaskList from './task-list.vue';
 import CollumnHead from './collumn-head.vue';
+import { COLLUMNS } from '@/shared';
 
 const props = defineProps<{
   collumn: CollumnName;
-  title: string;
   color: string;
 }>()
 </script>
 
 <template>
   <div class="collumn">
-    <CollumnHead :title="props.title" :color="props.color" />
+    <CollumnHead :title="COLLUMNS[props.collumn]" :color="props.color" />
     <TaskList :collumn="collumn" />
   </div>
 </template>
