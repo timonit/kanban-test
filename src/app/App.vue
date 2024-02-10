@@ -4,14 +4,12 @@ import { NotifyPortal } from '@/features/notification/ui';
 import { Board } from '@/pages';
 
 const store = useTaskStore();
-window.store = store;
 
-store.addTask('asd', 'new');
-store.addTask('devd', 'new');
-store.addTask('xxx', 'new');
-store.addTask('ttt', 'new');
-store.addTask('in', 'in progress');
-store.addTask('on', 'in progress');
+store.addTask('Сделать меню', 'new');
+store.addTask('Создать конструктор', 'new');
+store.addTask('Реализовать шину', 'new');
+store.addTask('Собрать информацию', 'new');
+store.addTask('Зарегистрировать приложение', 'in progress');
 </script>
 
 <template>
