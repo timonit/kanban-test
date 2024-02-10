@@ -8,3 +8,13 @@ export type NotificationDTO = {
 export type NotificationState = {
   notifications: NotificationDTO[]
 }
+
+export type NotificationGetters = {
+}
+
+export type NotificationActions = {
+  removeNotification(id: string): void;
+
+  notify(dto: Omit<NotificationDTO, 'id'>): void;
+}
+

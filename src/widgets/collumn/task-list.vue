@@ -4,17 +4,28 @@ import { AddTask, } from '@/features/task';
 import { storeToRefs } from 'pinia';
 import TaskListItem from './task-list.item.vue';
 import { ref } from 'vue';
+import { useNotification } from '@/features/notification';
+import { COLLUMNS } from '@/shared';
 
 const props = defineProps<{ collumn: CollumnName; }>();
 
 const dropactive = ref(false);
 const containerEl = ref<HTMLElement>();
 const taskStore = useTaskStore();
+const notification = useNotification();
 const { getTasksByCollumnName } = storeToRefs(taskStore);
 
 const drop = (event: DragEvent) => {
-  const taskID = event.dataTransfer?.getData('text/plain');
-  taskStore.editTask(taskID, {collumn: props.collumn});
+  const taskID = event.dataTransfer?.getData('text/plain') as string;
+  const task = taskStore.getTask(taskID);
+  if (task && task.collumn !== props.collumn) {
+    taskStore.editTask(taskID, {collumn: props.collumn});
+    notification.notify({
+      title: `Задача перемещена в «${COLLUMNS[props.collumn]}»`,
+      text: taskStore.getTask(taskID)?.text || '',
+      type: 'success'
+    });
+  }
   dropactive.value = false;
 }
 

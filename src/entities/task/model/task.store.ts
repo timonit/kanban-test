@@ -1,13 +1,9 @@
-import type { CollumnName } from './types'
+import type { CollumnName, TaskActions, TaskGetters, TaskState } from './types'
 import { defineStore } from 'pinia'
 import type { TaskDTO } from './task.dto'
 import { createTask } from '../lib'
 
-type TaskState = {
-  taskList: TaskDTO[]
-}
-
-export const useTaskStore = defineStore<'task', TaskState>('task', {
+export const useTaskStore = defineStore<'task', TaskState, TaskGetters, TaskActions>('task', {
   state: () => {
     return { taskList: [] }
   },
